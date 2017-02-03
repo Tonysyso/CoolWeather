@@ -20,10 +20,10 @@ public class Utility {
     /**
      * analyze and handle return by the server at the province information
      */
-    public static boolean handleProvinceRespone(String respone) {
-        if (!TextUtils.isEmpty(respone)){
+    public static boolean handleProvinceRespone(String response) {
+        if (!TextUtils.isEmpty(response)){
             try {
-                JSONArray allProvinces = new JSONArray(respone);
+                JSONArray allProvinces = new JSONArray(response);
                 for (int i = 0; i < allProvinces.length(); i++) {
                     JSONObject provinceObject = allProvinces.getJSONObject(i);
                     Province province = new Province();
@@ -44,10 +44,10 @@ public class Utility {
     /**
      * analyze and handle return by the server at the city information
      */
-    public static boolean handleCityRespone(String respone, int provinceId) {
-        if (!TextUtils.isEmpty(respone)){
+    public static boolean handleCityRespone(String response, int provinceId) {
+        if (!TextUtils.isEmpty(response)) {
             try {
-                JSONArray allCities = new JSONArray(respone);
+                JSONArray allCities = new JSONArray(response);
                 for (int i = 0; i < allCities.length(); i++) {
                     JSONObject cityObject = allCities.getJSONObject(i);
                     City city = new City();
@@ -57,11 +57,9 @@ public class Utility {
                     city.save();
                 }
                 return true;
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
         return false;
     }
@@ -69,12 +67,12 @@ public class Utility {
     /**
      * analyze and handle return by the server at the county information
      */
-    public static boolean handleCountyRespone(String respone, int cityId) {
-        if (!TextUtils.isEmpty(respone)){
+    public static boolean handleCountyRespone(String response, int cityId) {
+        if (!TextUtils.isEmpty(response)) {
             try {
-                JSONArray allCounties = new JSONArray(respone);
-                for (int i = 0; i < allCounties .length(); i++) {
-                    JSONObject countyObject = allCounties .getJSONObject(i);
+                JSONArray allCounties = new JSONArray(response);
+                for (int i = 0; i < allCounties.length(); i++) {
+                    JSONObject countyObject = allCounties.getJSONObject(i);
                     County county = new County();
                     county.setCountyName(countyObject.getString("name"));
                     county.setWeatherId(countyObject.getString("weather_id"));
@@ -82,11 +80,9 @@ public class Utility {
                     county.save();
                 }
                 return true;
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
         return false;
     }
